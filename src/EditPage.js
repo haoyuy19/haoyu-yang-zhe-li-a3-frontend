@@ -2,6 +2,7 @@ import Axios from 'axios';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+const HOST = 'https://haoyu-yang-zhe-li-a3-backend.herokuapp.com/url/';
 export default class EditPage extends React.Component {
   constructor(props) {
     super(props);
@@ -22,11 +23,9 @@ export default class EditPage extends React.Component {
   }
 
   componentDidMount() {
-    Axios.get('http://localhost:5000/url/' + this.state.short).then(
-      response => {
-        this.setState({ full: response.data.full });
-      }
-    );
+    Axios.get(HOST + this.state.short).then(response => {
+      this.setState({ full: response.data.full });
+    });
   }
 
   onChange(key, event) {
@@ -34,18 +33,13 @@ export default class EditPage extends React.Component {
   }
 
   onSubmit() {
-    Axios.put('http://localhost:5000/url/' + this.state.short + '/edit', {
+    Axios.put(HOST + this.state.short + '/edit', {
       full: this.state.editFull,
       short: this.state.short
     })
       .then(function () {
-        Axios.get('http://localhost:5000/url/' + this.state.short);
+        Axios.get(HOST + this.state.short);
       })
-      // .then(() => {
-      //   this.setState({
-      //     valid: true
-      //   });
-      // });
       .catch(err => {
         // console.log(err.response.data);
         this.setState({
@@ -53,11 +47,6 @@ export default class EditPage extends React.Component {
           // valid: false
         });
       });
-    // .finally(() => {
-    //   this.setState({
-    //     valid: true
-    //   });
-    // });
   }
 
   ValidURL(str) {

@@ -3,7 +3,7 @@ import React from 'react';
 import EditPage from './EditPage';
 import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
 
-const HOST = 'http://localhost:5000/url/';
+const HOST = 'https://haoyu-yang-zhe-li-a3-backend.herokuapp.com/url/';
 export default class MainPage extends React.Component {
   constructor(props) {
     super(props);
@@ -19,17 +19,16 @@ export default class MainPage extends React.Component {
   }
 
   componentDidMount() {
-    Axios.get('http://localhost:5000/url').then(response => {
+    Axios.get(HOST).then(response => {
       this.setState({ url: response.data });
     });
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.url !== this.state.url) {
-      Axios.get('http://localhost:5000/url').then(response => {
+      Axios.get(HOST).then(response => {
         this.setState({ url: response.data });
       });
-      console.log('has changed.');
     }
   }
 
@@ -42,13 +41,13 @@ export default class MainPage extends React.Component {
   }
 
   onSubmit() {
-    Axios.post('http://localhost:5000/url', {
+    Axios.post(HOST, {
       _id: this.state.urlId,
       full: this.state.urlFull,
       short: this.state.urlShort
     })
       .then(function () {
-        return Axios.get('http://localhost:5000/url');
+        return Axios.get(HOST);
       })
       .then(response => {
         this.setState({ url: response.data });
