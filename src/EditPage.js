@@ -72,12 +72,12 @@ export default class EditPage extends React.Component {
   }
 
   onSubmitDelete() {
-    Axios.delete('http://localhost:5000/url/' + this.state.short + '/edit', {
+    Axios.delete(HOST + this.state.short + '/edit', {
       short: this.state.short
     }).catch(err => {
       this.setState({ errorMessage: err.response.data });
     });
-    this.refreshPage();
+    // this.refreshPage();
   }
 
   render() {
