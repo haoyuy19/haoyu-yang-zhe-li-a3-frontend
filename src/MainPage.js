@@ -55,7 +55,7 @@ export default class MainPage extends React.Component {
       .catch(err => {
         console.log(err.response.data);
         this.setState({ errorMessage: err.response.data });
-        setInterval(this.refreshPage(), 200);
+        setInterval(this.refreshPage(), 60000);
       })
       .finally(() =>
         this.setState({
@@ -73,6 +73,7 @@ export default class MainPage extends React.Component {
       this.setState({
         errorMessage: 'Invalid Shortened Url'
       });
+      setInterval(this.refreshPage(), 60000);
     } else {
       this.setState({
         valid: true
