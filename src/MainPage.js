@@ -55,6 +55,7 @@ export default class MainPage extends React.Component {
       .catch(err => {
         console.log(err.response.data);
         this.setState({ errorMessage: err.response.data });
+        setInterval(this.refreshPage(), 200);
       })
       .finally(() =>
         this.setState({
