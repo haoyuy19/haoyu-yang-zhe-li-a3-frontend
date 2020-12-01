@@ -5,19 +5,19 @@ import MainPage from './MainPage';
 import EditPage from './EditPage';
 
 function App() {
-  return (
-    <div>
-      <Router>
-        <div className='container'>
-          <Switch>
-            <Route path='/' exact component={MainPage}></Route>
-            <Route path='/:short/edit' component={EditPage}></Route>
-            <Route path='/:short' component={MainPage}></Route>
-          </Switch>
+    return (
+        <div>
+            <Router>
+                <div className="container">
+                    <Switch>
+                        <Route path="/" exact component={MainPage}></Route>
+                        <Route path="/:short/edit" component={EditPage}></Route>
+                        <Route path="/:short" component={MainPage}></Route>
+                    </Switch>
+                </div>
+            </Router>
         </div>
-      </Router>
-    </div>
-  );
+    );
 }
 
 export default App;
